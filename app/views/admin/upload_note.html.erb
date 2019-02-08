@@ -1,0 +1,26 @@
+<%= full_name%> from <%= address%>
+<%= form_for(@enote,url: admin_create_enote_path) do |f|%>
+<% if @enote.errors.any? %>
+		<div style="height: 100px;width:500px;text-color:red;background-color:red">
+			<%@enote.errors.full_messages.each do |error|%> 
+				<h6><%= error%></h6>
+			<%end%>
+		</div>
+	<%end%>	
+	<div style="margin-top:100px;">
+	<hr>
+	Title: <%= f.text_field :title%><br/>
+	<hr>
+	Description: <%= f.text_area :description%><br/>
+	<hr>
+	Expiry Date: <%= f.date_select :expire_date%><br/>
+	<hr>
+	File Type: <%= f.select :file_type, options_for_select([['pdf'], ['jpg'],['word']]),:prompt=>"Please select file type"%><br/>
+	<hr>
+	Notes Price: <%= f.text_field :costing%><br/>
+	<hr>
+	Dashboard Status: <%= f.check_box :status%><br/>
+	<center><%= f.submit "Broadcast The notes"%></center>
+<% end %>
+<hr>
+</div>
